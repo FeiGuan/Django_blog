@@ -1,0 +1,29 @@
+django-admin.py startproject mysite
+./manage.py runserver
+cd mysite
+./manage.py startapp blog
+cd blog/
+//in models.py
+	add BlogPost(models.Model) class
+//in mysite/settings.py
+	in DATABASE SETTING:
+		DATABASES[default][ENGINE]: django.db.backends.sqlite3
+				  [NAME]: django.db path
+	in INSTALLED_APPS:
+		add 'blog'
+		add 'django.contrib.admin'
+	
+//create database, create superuser: bo password
+cd ..
+./manage.py syncdb
+
+//in urls.py
+uncomment from django.contrib import admin admin.autodiscover()
+add  url(r'^admin/', include(admin.site.urls)),
+
+//in blog/models.py: add admin app
+from django.contrib import admin
+admin.site.register(BlogPost)
+
+//you can log in to localhost/admin
+
